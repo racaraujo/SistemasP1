@@ -1,1 +1,1 @@
-Pasta para projetos e afins do laboratório.
+Pasta para projetos do Quartus 18.0.
