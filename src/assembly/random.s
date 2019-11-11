@@ -15,18 +15,17 @@ counter_1:	.word STARTVALUE
 # Registradores usados | Valores representados
 # r6                   | Contador do loop_2
 # r9                   | Contador do loop_1
-# r10                  | N�mero Aleat�rio
+# r10                  | Número Aleatório
 ###############################################
 
 main:		movia r8, counter_1 		# move o imediato (0) para o r8
 
-random_call:	ldw r10, 0(r8) 			# l� do r8 pro r9 (Limpa o registrador com zero)
+random_call:	ldw r10, 0(r8) 			# l� do r8 pro r10(Limpa o registrador com zero)
 
-xorshift:	addi r10, r9, 0
-		ldw r11, 0(r8) 			# l� do r8 pro r9 (Limpa o registrador com zero)
-		addi r11, r0, 3			# define r11 como 3
-		sll r10, r10, r11		# shift left logical
-		xor r10, r10, r11
-		addi r11, r0, 2			# define r11 como 5
-		srl r10, r10, r11
+xorshift:	addi r10, r9, 150
+		slli r10, r10, 13		# shift left logical
+		xorhi r10, r10, 13
+		srli r10, r10, 7
+		xorhi r10, r10, 11
+		slli r10, r10, 5		# shift left logical
 		br random_call
