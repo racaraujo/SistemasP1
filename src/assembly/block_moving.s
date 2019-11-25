@@ -7,10 +7,10 @@
 			.data
 			.equ LEDADDR, 0x810
 			.equ STARTMAJOR, 0
-			.equ TWO, 2
+			.equ ONE, 1
 
 counter:	.word STARTMAJOR
-			.word TWO
+			.word ONE
 			.global main
 			.text
 
@@ -38,7 +38,7 @@ counter:	.word STARTMAJOR
 # 1000                 | 0x11111111   - 01
 ################################################
 
-main:		addi r4, r0, 300		# define o limite no r4
+main:		addi r4, r0, 200		# define o limite no r4
 reset:		movia r8, 0x11111110	# byte para ligar led
 			movia r9, LEDADDR		# move o endereço da led
 			movia r5, counter		# move o imediato para o r5
@@ -51,9 +51,14 @@ delay:  	addi r6, r6, 1
 
 loop:		stb r8, 0(r9)			# armazena o byte em r8 no periferico com endereço em r9
 			add r8, r8, r12			# roli r8, r8, 1
-			movia r11, TWO
-			blt r12, r11, reset
-			srli r12, r12, 1		# divide por 2
+			movia r11, ONE          # Move o imediato 1 para r11
+			blt r12, r11, reset     # Caso o valor em r12 <= r11 reseta
+			srai r11, r12, 1		# divide por 2
+			sub r11, r12, r11		# Subtrai r11 de r12
 			movia r5, counter		# move o imediato para o r5
 			ldw r6, 0(r5)			# lê do r5 pro r6
+			beq r11, r12, less_one  # caso o r12 ao ser dividido vire 0, vai para subtrair 1
+			mov r12, r11            # caso não entre na condição acima, r12 fica com o valor em r11
 			br delay				# volta pra contar o tempo
+less_one:	addi r12, r12, -1       # subtrai 1 de r12
+			br delay
