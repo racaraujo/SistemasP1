@@ -1,0 +1,5 @@
+# Ignoring generated folders
+/output_files
+/simulation
+/incremental_db
+/db
