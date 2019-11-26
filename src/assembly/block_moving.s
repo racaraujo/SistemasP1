@@ -21,7 +21,7 @@ counter:	.word STARTMAJOR
 # r6                   | Contador do delay
 # r8                   | Contador do loop
 # r9                   | Endereço da LED saída
-# r10                  | Tamanho do bloco
+# r10                  | Estado atual dos blocos
 # r11                  | Para uso temporário
 # r12                  | Valor de soma
 ###############################################
