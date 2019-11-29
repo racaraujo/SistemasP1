@@ -21,11 +21,11 @@ counter_1:		.word STARTVALUE
 
 main:			movia r8, counter_1 		# move o imediato (0) para o r8
 				movia r10, COUNTER_INPUT	# move o endereço da entrada do contador
-				ldbio r9, 0(r10)			# carrega o valor contido na entrada do contador
 
 random_call:	ldw r10, 0(r8) 				# lê do r8 pro r10(Limpa o registrador com zero)
+				ldbio r9, 0(r10)			# carrega o valor contido na entrada do contador
 
-xorshift:		addi r10, r9, 150
+xorshift:		addi r10, r9, 0
 				slli r10, r10, 13			# shift left logical
 				xorhi r10, r10, 13
 				srli r10, r10, 7
