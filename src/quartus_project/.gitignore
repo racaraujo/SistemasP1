@@ -3,3 +3,9 @@
 /simulation
 /incremental_db
 /db
+
+# Ignoring generated files
+*.v.bak
+*.srec
+*.elf
+*.s.o
