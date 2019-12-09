@@ -4,10 +4,13 @@
 
 `timescale 1 ps / 1 ps
 module JooJump_processor (
-		input  wire       clk_clk,             //          clk.clk
-		input  wire [7:0] counter_8bit_export, // counter_8bit.export
-		output wire [7:0] display_lcd_export,  //  display_lcd.export
-		input  wire       reset_reset_n        //        reset.reset_n
+		input  wire       clk_clk,               //          clk.clk
+		input  wire [7:0] counter_8bit_export,   // counter_8bit.export
+		output wire [7:0] lcd_data_lcd_data,     //     lcd_data.lcd_data
+		output wire       lcd_enable_lcd_enable, //   lcd_enable.lcd_enable
+		output wire       lcd_rs_lcd_rs,         //       lcd_rs.lcd_rs
+		output wire       lcd_rw_lcd_rw,         //       lcd_rw.lcd_rw
+		input  wire       reset_reset_n          //        reset.reset_n
 	);
 
 	wire  [31:0] nios2_gen2_0_data_master_readdata;                           // mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
@@ -48,18 +51,13 @@ module JooJump_processor (
 	wire         mm_interconnect_0_onchip_memory2_0_s1_clken;                 // mm_interconnect_0:onchip_memory2_0_s1_clken -> onchip_memory2_0:clken
 	wire  [31:0] mm_interconnect_0_counter_8bit_s1_readdata;                  // counter_8bit:readdata -> mm_interconnect_0:counter_8bit_s1_readdata
 	wire   [1:0] mm_interconnect_0_counter_8bit_s1_address;                   // mm_interconnect_0:counter_8bit_s1_address -> counter_8bit:address
-	wire         mm_interconnect_0_display_lcd_s1_chipselect;                 // mm_interconnect_0:display_lcd_s1_chipselect -> display_lcd:chipselect
-	wire  [31:0] mm_interconnect_0_display_lcd_s1_readdata;                   // display_lcd:readdata -> mm_interconnect_0:display_lcd_s1_readdata
-	wire   [1:0] mm_interconnect_0_display_lcd_s1_address;                    // mm_interconnect_0:display_lcd_s1_address -> display_lcd:address
-	wire         mm_interconnect_0_display_lcd_s1_write;                      // mm_interconnect_0:display_lcd_s1_write -> display_lcd:write_n
-	wire  [31:0] mm_interconnect_0_display_lcd_s1_writedata;                  // mm_interconnect_0:display_lcd_s1_writedata -> display_lcd:writedata
 	wire         irq_mapper_receiver0_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [counter_8bit:reset_n, display_lcd:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [counter_8bit:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
 	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset]
-	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> onchip_memory2_0:reset_req
+	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
 
 	JooJump_processor_counter_8bit counter_8bit (
 		.clk      (clk_clk),                                    //                 clk.clk
@@ -69,15 +67,19 @@ module JooJump_processor (
 		.in_port  (counter_8bit_export)                         // external_connection.export
 	);
 
-	JooJump_processor_display_lcd display_lcd (
-		.clk        (clk_clk),                                     //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
-		.address    (mm_interconnect_0_display_lcd_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_display_lcd_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_display_lcd_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_display_lcd_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_display_lcd_s1_readdata),   //                    .readdata
-		.out_port   (display_lcd_export)                           // external_connection.export
+	LCD_Initializer initialize_lcd_0 (
+		.dataa      (),                      //   nios_custom_instruction_slave.dataa
+		.lcd_data   (lcd_data_lcd_data),     //                     conduit_end.lcd_data
+		.datab      (),                      // nios_custom_instruction_slave_1.datab
+		.done       (),                      // nios_custom_instruction_slave_2.done
+		.result     (),                      // nios_custom_instruction_slave_3.result
+		.lcd_rw     (lcd_rw_lcd_rw),         //                   conduit_end_1.lcd_rw
+		.lcd_rs     (lcd_rs_lcd_rs),         //                   conduit_end_2.lcd_rs
+		.clk        (),                      // nios_custom_instruction_slave_4.clk
+		.clk_en     (),                      // nios_custom_instruction_slave_5.clk_en
+		.start      (),                      // nios_custom_instruction_slave_6.start
+		.reset      (),                      // nios_custom_instruction_slave_7.reset
+		.lcd_enable (lcd_enable_lcd_enable)  //                   conduit_end_3.lcd_enable
 	);
 
 	JooJump_processor_jtag_uart_0 jtag_uart_0 (
@@ -161,11 +163,6 @@ module JooJump_processor (
 		.nios2_gen2_0_instruction_master_readdata            (nios2_gen2_0_instruction_master_readdata),                    //                                              .readdata
 		.counter_8bit_s1_address                             (mm_interconnect_0_counter_8bit_s1_address),                   //                               counter_8bit_s1.address
 		.counter_8bit_s1_readdata                            (mm_interconnect_0_counter_8bit_s1_readdata),                  //                                              .readdata
-		.display_lcd_s1_address                              (mm_interconnect_0_display_lcd_s1_address),                    //                                display_lcd_s1.address
-		.display_lcd_s1_write                                (mm_interconnect_0_display_lcd_s1_write),                      //                                              .write
-		.display_lcd_s1_readdata                             (mm_interconnect_0_display_lcd_s1_readdata),                   //                                              .readdata
-		.display_lcd_s1_writedata                            (mm_interconnect_0_display_lcd_s1_writedata),                  //                                              .writedata
-		.display_lcd_s1_chipselect                           (mm_interconnect_0_display_lcd_s1_chipselect),                 //                                              .chipselect
 		.jtag_uart_0_avalon_jtag_slave_address               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),     //                 jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write                 (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),       //                                              .write
 		.jtag_uart_0_avalon_jtag_slave_read                  (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),        //                                              .read

@@ -60,4 +60,15 @@ set_global_assignment -name BSF_FILE up_down_counter.bsf
 set_global_assignment -name VERILOG_FILE verilog/up_down_counter.v
 set_global_assignment -name QIP_FILE JooJump_processor/synthesis/JooJump_processor.qip
 set_global_assignment -name BDF_FILE JooJump.bdf
+set_location_assignment PIN_11 -to lcd_data_lcd_data[7]
+set_location_assignment PIN_7 -to lcd_data_lcd_data[6]
+set_location_assignment PIN_10 -to lcd_data_lcd_data[5]
+set_location_assignment PIN_2 -to lcd_data_lcd_data[4]
+set_location_assignment PIN_3 -to lcd_data_lcd_data[3]
+set_location_assignment PIN_144 -to lcd_data_lcd_data[2]
+set_location_assignment PIN_1 -to lcd_data_lcd_data[1]
+set_location_assignment PIN_142 -to lcd_data_lcd_data[0]
+set_location_assignment PIN_143 -to lcd_enable_lcd_enable
+set_location_assignment PIN_138 -to lcd_rw_lcd_rw
+set_location_assignment PIN_141 -to lcd_rs_lcd_rs
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
