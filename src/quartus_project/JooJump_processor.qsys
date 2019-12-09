@@ -49,6 +49,14 @@
          type = "String";
       }
    }
+   element initialize_lcd_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element jtag_uart_0
    {
       datum _sortIndex
@@ -193,6 +201,11 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="8" />
  </module>
+ <module
+   name="initialize_lcd_0"
+   kind="initialize_lcd"
+   version="1.0"
+   enabled="1" />
  <module
    name="jtag_uart_0"
    kind="altera_avalon_jtag_uart"
