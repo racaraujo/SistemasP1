@@ -29,7 +29,7 @@ output reg [7:0] lcd_data;
 output reg lcd_enable;
 
 reg [1:0] executed;
-
+reg [31:0] temp_result;
 initial begin
 	executed <= 2'b00;
 	lcd_rs <= 1'b0;
@@ -46,7 +46,10 @@ initial begin
 	//Send display clear
 	lcd_data <= 8'b00000001;
 	#1.64;
+	done <= 1'b1;
+	temp_result <= 8'b01001001;
 end
+assign result = temp_result;
 /*always @(lcd_data[7] == 0) begin
 	if (executed == 2'b00) begin
 		lcd_data <= 8'b00001110;
