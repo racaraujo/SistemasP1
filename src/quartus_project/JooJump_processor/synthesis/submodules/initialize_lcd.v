@@ -34,13 +34,20 @@ initial begin
 	executed <= 2'b00;
 	lcd_rs <= 1'b0;
 	lcd_rw <= 1'b0;
+	//Send Function Set
 	lcd_data <= 8'b00111000;
-	#15;
-	lcd_data <= 8'b00111000;
-	#15;
+	#0.0039;
+	//Send Display On/Off Control
+	lcd_data <= 8'b00001110;
+	#0.0039;
+	//Send entry mode set
 	lcd_data <= 8'b00000110;
+	#0.0039;
+	//Send display clear
+	lcd_data <= 8'b00000001;
+	#1.64;
 end
-always @(lcd_data[7] == 0) begin
+/*always @(lcd_data[7] == 0) begin
 	if (executed == 2'b00) begin
 		lcd_data <= 8'b00001110;
 		executed <= 2'b01;
@@ -50,5 +57,5 @@ always @(lcd_data[7] == 0) begin
 		executed <= 2'b10;
 	end
 	else begin done <= 1'b1; end
-end
+end*/
 endmodule

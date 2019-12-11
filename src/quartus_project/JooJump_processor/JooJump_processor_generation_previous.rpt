@@ -21,6 +21,8 @@ Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
 Info: JooJump_processor.counter_8bit: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: JooJump_processor.initialize_lcd_0.reset: Interface has no signals
+Warning: JooJump_processor.initialize_lcd_0.clock: Interface has no signals
 Info: JooJump_processor.jtag_uart_0: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
 Info: JooJump_processor.sysid_qsys_0: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
 Info: JooJump_processor.sysid_qsys_0: Time stamp will be automatically updated when this component is generated.
@@ -50,22 +52,26 @@ Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
 Info: JooJump_processor.counter_8bit: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: JooJump_processor.initialize_lcd_0.reset: Interface has no signals
+Warning: JooJump_processor.initialize_lcd_0.clock: Interface has no signals
 Info: JooJump_processor.jtag_uart_0: JTAG UART IP input clock need to be at least double (2x) the operating frequency of JTAG TCK on board
 Info: JooJump_processor.sysid_qsys_0: System ID is not assigned automatically. Edit the System ID parameter to provide a unique ID
 Info: JooJump_processor.sysid_qsys_0: Time stamp will be automatically updated when this component is generated.
 Info: JooJump_processor: Generating JooJump_processor "JooJump_processor" for QUARTUS_SYNTH
+Warning: JooJump_processor: "No matching role found for clk_0:clk:clk_out (clk)"
+Warning: JooJump_processor: "No matching role found for rst_translator_001:out_reset:out_reset (reset)"
 Info: counter_8bit: Starting RTL generation for module 'JooJump_processor_counter_8bit'
-Info: counter_8bit:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=JooJump_processor_counter_8bit --dir=/tmp/alt8239_5427592355304364321.dir/0002_counter_8bit_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0002_counter_8bit_gen//JooJump_processor_counter_8bit_component_configuration.pl  --do_build_sim=0  ]
+Info: counter_8bit:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=JooJump_processor_counter_8bit --dir=/tmp/alt8239_5427592355304364321.dir/0022_counter_8bit_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0022_counter_8bit_gen//JooJump_processor_counter_8bit_component_configuration.pl  --do_build_sim=0  ]
 Info: counter_8bit: Done RTL generation for module 'JooJump_processor_counter_8bit'
 Info: counter_8bit: "JooJump_processor" instantiated altera_avalon_pio "counter_8bit"
 Info: initialize_lcd_0: "JooJump_processor" instantiated initialize_lcd "initialize_lcd_0"
 Info: jtag_uart_0: Starting RTL generation for module 'JooJump_processor_jtag_uart_0'
-Info: jtag_uart_0:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=JooJump_processor_jtag_uart_0 --dir=/tmp/alt8239_5427592355304364321.dir/0004_jtag_uart_0_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0004_jtag_uart_0_gen//JooJump_processor_jtag_uart_0_component_configuration.pl  --do_build_sim=0  ]
+Info: jtag_uart_0:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=JooJump_processor_jtag_uart_0 --dir=/tmp/alt8239_5427592355304364321.dir/0024_jtag_uart_0_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0024_jtag_uart_0_gen//JooJump_processor_jtag_uart_0_component_configuration.pl  --do_build_sim=0  ]
 Info: jtag_uart_0: Done RTL generation for module 'JooJump_processor_jtag_uart_0'
 Info: jtag_uart_0: "JooJump_processor" instantiated altera_avalon_jtag_uart "jtag_uart_0"
 Info: nios2_gen2_0: "JooJump_processor" instantiated altera_nios2_gen2 "nios2_gen2_0"
 Info: onchip_memory2_0: Starting RTL generation for module 'JooJump_processor_onchip_memory2_0'
-Info: onchip_memory2_0:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=JooJump_processor_onchip_memory2_0 --dir=/tmp/alt8239_5427592355304364321.dir/0005_onchip_memory2_0_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0005_onchip_memory2_0_gen//JooJump_processor_onchip_memory2_0_component_configuration.pl  --do_build_sim=0  ]
+Info: onchip_memory2_0:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64/perl/bin/perl -I /opt/intelFPGA_lite/18.0/quartus/linux64/perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/common -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=JooJump_processor_onchip_memory2_0 --dir=/tmp/alt8239_5427592355304364321.dir/0025_onchip_memory2_0_gen/ --quartus_dir=/opt/intelFPGA_lite/18.0/quartus --verilog --config=/tmp/alt8239_5427592355304364321.dir/0025_onchip_memory2_0_gen//JooJump_processor_onchip_memory2_0_component_configuration.pl  --do_build_sim=0  ]
 Info: onchip_memory2_0: Done RTL generation for module 'JooJump_processor_onchip_memory2_0'
 Info: onchip_memory2_0: "JooJump_processor" instantiated altera_avalon_onchip_memory2 "onchip_memory2_0"
 Info: sysid_qsys_0: "JooJump_processor" instantiated altera_avalon_sysid_qsys "sysid_qsys_0"
@@ -78,16 +84,16 @@ Info: mm_interconnect_0: "JooJump_processor" instantiated altera_mm_interconnect
 Info: irq_mapper: "JooJump_processor" instantiated altera_irq_mapper "irq_mapper"
 Info: rst_controller: "JooJump_processor" instantiated altera_reset_controller "rst_controller"
 Info: cpu: Starting RTL generation for module 'JooJump_processor_nios2_gen2_0_cpu'
-Info: cpu:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64//eperlcmd -I /opt/intelFPGA_lite/18.0/quartus/linux64//perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/cpu_lib -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/nios_lib -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/generate_rtl.epl --name=JooJump_processor_nios2_gen2_0_cpu --dir=/tmp/alt8239_5427592355304364321.dir/0009_cpu_gen/ --quartus_bindir=/opt/intelFPGA_lite/18.0/quartus/linux64/ --verilog --config=/tmp/alt8239_5427592355304364321.dir/0009_cpu_gen//JooJump_processor_nios2_gen2_0_cpu_processor_configuration.pl  --do_build_sim=0  ]
-Info: cpu: # 2019.12.09 16:53:04 (*) Starting Nios II generation
-Info: cpu: # 2019.12.09 16:53:04 (*)   Checking for plaintext license.
-Info: cpu: # 2019.12.09 16:53:07 (*)   Plaintext license not found.
-Info: cpu: # 2019.12.09 16:53:07 (*)   No license required to generate encrypted Nios II/e.
-Info: cpu: # 2019.12.09 16:53:07 (*)   Elaborating CPU configuration settings
-Info: cpu: # 2019.12.09 16:53:07 (*)   Creating all objects for CPU
-Info: cpu: # 2019.12.09 16:53:08 (*)   Generating RTL from CPU objects
-Info: cpu: # 2019.12.09 16:53:08 (*)   Creating plain-text RTL
-Info: cpu: # 2019.12.09 16:53:09 (*) Done Nios II generation
+Info: cpu:   Generation command is [exec /opt/intelFPGA_lite/18.0/quartus/linux64//eperlcmd -I /opt/intelFPGA_lite/18.0/quartus/linux64//perl/lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/europa -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin/perl_lib -I /opt/intelFPGA_lite/18.0/quartus/sopc_builder/bin -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/cpu_lib -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/nios_lib -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -I /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -- /opt/intelFPGA_lite/18.0/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/generate_rtl.epl --name=JooJump_processor_nios2_gen2_0_cpu --dir=/tmp/alt8239_5427592355304364321.dir/0029_cpu_gen/ --quartus_bindir=/opt/intelFPGA_lite/18.0/quartus/linux64/ --verilog --config=/tmp/alt8239_5427592355304364321.dir/0029_cpu_gen//JooJump_processor_nios2_gen2_0_cpu_processor_configuration.pl  --do_build_sim=0  ]
+Info: cpu: # 2019.12.09 16:55:44 (*) Starting Nios II generation
+Info: cpu: # 2019.12.09 16:55:44 (*)   Checking for plaintext license.
+Info: cpu: # 2019.12.09 16:55:45 (*)   Plaintext license not found.
+Info: cpu: # 2019.12.09 16:55:45 (*)   No license required to generate encrypted Nios II/e.
+Info: cpu: # 2019.12.09 16:55:45 (*)   Elaborating CPU configuration settings
+Info: cpu: # 2019.12.09 16:55:45 (*)   Creating all objects for CPU
+Info: cpu: # 2019.12.09 16:55:46 (*)   Generating RTL from CPU objects
+Info: cpu: # 2019.12.09 16:55:46 (*)   Creating plain-text RTL
+Info: cpu: # 2019.12.09 16:55:47 (*) Done Nios II generation
 Info: cpu: Done RTL generation for module 'JooJump_processor_nios2_gen2_0_cpu'
 Info: cpu: "nios2_gen2_0" instantiated altera_nios2_gen2_unit "cpu"
 Info: nios2_gen2_0_data_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "nios2_gen2_0_data_master_translator"
