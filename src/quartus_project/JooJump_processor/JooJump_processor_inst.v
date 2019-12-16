@@ -5,6 +5,7 @@
 		.lcd_enable_lcd_enable (<connected-to-lcd_enable_lcd_enable>), //   lcd_enable.lcd_enable
 		.lcd_rs_lcd_rs         (<connected-to-lcd_rs_lcd_rs>),         //       lcd_rs.lcd_rs
 		.lcd_rw_lcd_rw         (<connected-to-lcd_rw_lcd_rw>),         //       lcd_rw.lcd_rw
-		.reset_reset_n         (<connected-to-reset_reset_n>)          //        reset.reset_n
+		.reset_reset_n         (<connected-to-reset_reset_n>),         //        reset.reset_n
+		.buttons_export        (<connected-to-buttons_export>)         //      buttons.export
 	);
 

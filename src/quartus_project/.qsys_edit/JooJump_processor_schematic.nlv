@@ -1,7 +1,6 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
 preplace inst JooJump_processor.nios2_gen2_0.cpu -pg 1
-preplace inst JooJump_processor.display_lcd -pg 1 -lvl 3 -y 410
 preplace inst JooJump_processor.nios2_gen2_0.reset_bridge -pg 1
 preplace inst JooJump_processor.jtag_uart_0 -pg 1 -lvl 3 -y 190
 preplace inst JooJump_processor.initialize_lcd_0 -pg 1 -lvl 2 -y 490
@@ -12,17 +11,16 @@ preplace inst JooJump_processor.nios2_gen2_0.clock_bridge -pg 1
 preplace inst JooJump_processor.nios2_gen2_0 -pg 1 -lvl 2 -y 180
 preplace inst JooJump_processor -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst JooJump_processor.sysid_qsys_0 -pg 1 -lvl 3 -y 110
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.counter_8bit,(SLAVE)counter_8bit.external_connection) 1 0 3 NJ 340 NJ 340 NJ
 preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)clk_0.clk_in,(SLAVE)JooJump_processor.clk) 1 0 1 NJ
 preplace netloc POINT_TO_POINT<net_container>JooJump_processor</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)jtag_uart_0.irq) 1 2 1 760
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.display_lcd,(SLAVE)display_lcd.external_connection) 1 0 3 NJ 440 NJ 440 NJ
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)initialize_lcd_0.conduit_end_2,(SLAVE)JooJump_processor.lcd_rs) 1 0 2 NJ 560 NJ
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)initialize_lcd_0.conduit_end,(SLAVE)JooJump_processor.lcd_data) 1 0 2 NJ 520 NJ
-preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.lcd_rw,(SLAVE)initialize_lcd_0.conduit_end_1) 1 0 2 NJ 540 NJ
-preplace netloc INTERCONNECT<net_container>JooJump_processor</net_container>(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)counter_8bit.s1,(MASTER)nios2_gen2_0.data_master,(SLAVE)display_lcd.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)onchip_memory2_0.s1,(SLAVE)sysid_qsys_0.control_slave) 1 1 2 340 480 700
+preplace netloc INTERCONNECT<net_container>JooJump_processor</net_container>(SLAVE)counter_8bit.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)jtag_uart_0.reset,(SLAVE)initialize_lcd_0.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)sysid_qsys_0.reset,(SLAVE)nios2_gen2_0.reset,(MASTER)clk_0.clk_reset) 1 1 2 320 340 720
+preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)JooJump_processor.reset) 1 0 1 NJ
+preplace netloc INTERCONNECT<net_container>JooJump_processor</net_container>(SLAVE)jtag_uart_0.avalon_jtag_slave,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)onchip_memory2_0.s1,(SLAVE)counter_8bit.s1) 1 1 2 320 140 700
+preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)counter_8bit.external_connection,(SLAVE)JooJump_processor.counter_8bit) 1 0 3 NJ 360 NJ 360 NJ
+preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)initialize_lcd_0.conduit_end_1,(SLAVE)JooJump_processor.lcd_rw) 1 0 2 NJ 540 NJ
+preplace netloc FAN_OUT<net_container>JooJump_processor</net_container>(SLAVE)nios2_gen2_0.clk,(SLAVE)jtag_uart_0.clk,(MASTER)clk_0.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)counter_8bit.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)initialize_lcd_0.clock) 1 1 2 300 320 740
+preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.lcd_rs,(SLAVE)initialize_lcd_0.conduit_end_2) 1 0 2 NJ 560 NJ
 preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.lcd_enable,(SLAVE)initialize_lcd_0.conduit_end_3) 1 0 2 NJ 580 NJ
-preplace netloc INTERCONNECT<net_container>JooJump_processor</net_container>(SLAVE)jtag_uart_0.reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)onchip_memory2_0.reset1,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)initialize_lcd_0.reset,(MASTER)clk_0.clk_reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)counter_8bit.reset,(SLAVE)display_lcd.reset) 1 1 2 320 460 720
-preplace netloc FAN_OUT<net_container>JooJump_processor</net_container>(SLAVE)counter_8bit.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)display_lcd.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)initialize_lcd_0.clock,(SLAVE)onchip_memory2_0.clk1,(MASTER)clk_0.clk,(SLAVE)nios2_gen2_0.clk) 1 1 2 300 420 740
+preplace netloc EXPORT<net_container>JooJump_processor</net_container>(SLAVE)JooJump_processor.lcd_data,(SLAVE)initialize_lcd_0.conduit_end) 1 0 2 NJ 520 NJ
 levelinfo -pg 1 0 90 970
 levelinfo -hier JooJump_processor 100 130 460 810 960

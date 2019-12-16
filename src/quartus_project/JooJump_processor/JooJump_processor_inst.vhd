@@ -6,7 +6,8 @@
 			lcd_enable_lcd_enable : out std_logic;                                       -- lcd_enable
 			lcd_rs_lcd_rs         : out std_logic;                                       -- lcd_rs
 			lcd_rw_lcd_rw         : out std_logic;                                       -- lcd_rw
-			reset_reset_n         : in  std_logic                    := 'X'              -- reset_n
+			reset_reset_n         : in  std_logic                    := 'X';             -- reset_n
+			buttons_export        : in  std_logic_vector(2 downto 0) := (others => 'X')  -- export
 		);
 	end component JooJump_processor;
 
@@ -18,6 +19,7 @@
 			lcd_enable_lcd_enable => CONNECTED_TO_lcd_enable_lcd_enable, --   lcd_enable.lcd_enable
 			lcd_rs_lcd_rs         => CONNECTED_TO_lcd_rs_lcd_rs,         --       lcd_rs.lcd_rs
 			lcd_rw_lcd_rw         => CONNECTED_TO_lcd_rw_lcd_rw,         --       lcd_rw.lcd_rw
-			reset_reset_n         => CONNECTED_TO_reset_reset_n          --        reset.reset_n
+			reset_reset_n         => CONNECTED_TO_reset_reset_n,         --        reset.reset_n
+			buttons_export        => CONNECTED_TO_buttons_export         --      buttons.export
 		);
 

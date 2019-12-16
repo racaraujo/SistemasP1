@@ -4,6 +4,7 @@
 
 `timescale 1 ps / 1 ps
 module JooJump_processor (
+		input  wire [2:0] buttons_export,        //      buttons.export
 		input  wire       clk_clk,               //          clk.clk
 		input  wire [7:0] counter_8bit_export,   // counter_8bit.export
 		output wire [7:0] lcd_data_lcd_data,     //     lcd_data.lcd_data
@@ -51,13 +52,23 @@ module JooJump_processor (
 	wire         mm_interconnect_0_onchip_memory2_0_s1_clken;                 // mm_interconnect_0:onchip_memory2_0_s1_clken -> onchip_memory2_0:clken
 	wire  [31:0] mm_interconnect_0_counter_8bit_s1_readdata;                  // counter_8bit:readdata -> mm_interconnect_0:counter_8bit_s1_readdata
 	wire   [1:0] mm_interconnect_0_counter_8bit_s1_address;                   // mm_interconnect_0:counter_8bit_s1_address -> counter_8bit:address
+	wire  [31:0] mm_interconnect_0_buttons_s1_readdata;                       // buttons:readdata -> mm_interconnect_0:buttons_s1_readdata
+	wire   [1:0] mm_interconnect_0_buttons_s1_address;                        // mm_interconnect_0:buttons_s1_address -> buttons:address
 	wire         irq_mapper_receiver0_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [counter_8bit:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [buttons:reset_n, counter_8bit:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
 	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [initialize_lcd_0:reset, mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
+
+	JooJump_processor_buttons buttons (
+		.clk      (clk_clk),                               //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),       //               reset.reset_n
+		.address  (mm_interconnect_0_buttons_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_buttons_s1_readdata), //                    .readdata
+		.in_port  (buttons_export)                         // external_connection.export
+	);
 
 	JooJump_processor_counter_8bit counter_8bit (
 		.clk      (clk_clk),                                    //                 clk.clk
@@ -161,6 +172,8 @@ module JooJump_processor (
 		.nios2_gen2_0_instruction_master_waitrequest         (nios2_gen2_0_instruction_master_waitrequest),                 //                                              .waitrequest
 		.nios2_gen2_0_instruction_master_read                (nios2_gen2_0_instruction_master_read),                        //                                              .read
 		.nios2_gen2_0_instruction_master_readdata            (nios2_gen2_0_instruction_master_readdata),                    //                                              .readdata
+		.buttons_s1_address                                  (mm_interconnect_0_buttons_s1_address),                        //                                    buttons_s1.address
+		.buttons_s1_readdata                                 (mm_interconnect_0_buttons_s1_readdata),                       //                                              .readdata
 		.counter_8bit_s1_address                             (mm_interconnect_0_counter_8bit_s1_address),                   //                               counter_8bit_s1.address
 		.counter_8bit_s1_readdata                            (mm_interconnect_0_counter_8bit_s1_readdata),                  //                                              .readdata
 		.jtag_uart_0_avalon_jtag_slave_address               (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),     //                 jtag_uart_0_avalon_jtag_slave.address
