@@ -56,7 +56,7 @@ module JooJump_processor (
 	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [counter_8bit:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
-	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset]
+	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [initialize_lcd_0:reset, mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
 
 	JooJump_processor_counter_8bit counter_8bit (
@@ -68,18 +68,18 @@ module JooJump_processor (
 	);
 
 	LCD_Initializer initialize_lcd_0 (
-		.dataa      (),                      //   nios_custom_instruction_slave.dataa
-		.lcd_data   (lcd_data_lcd_data),     //                     conduit_end.lcd_data
-		.datab      (),                      // nios_custom_instruction_slave_1.datab
-		.done       (),                      // nios_custom_instruction_slave_2.done
-		.result     (),                      // nios_custom_instruction_slave_3.result
-		.lcd_rw     (lcd_rw_lcd_rw),         //                   conduit_end_1.lcd_rw
-		.lcd_rs     (lcd_rs_lcd_rs),         //                   conduit_end_2.lcd_rs
-		.clk        (),                      // nios_custom_instruction_slave_4.clk
-		.clk_en     (),                      // nios_custom_instruction_slave_5.clk_en
-		.start      (),                      // nios_custom_instruction_slave_6.start
-		.reset      (),                      // nios_custom_instruction_slave_7.reset
-		.lcd_enable (lcd_enable_lcd_enable)  //                   conduit_end_3.lcd_enable
+		.dataa      (),                                   //   nios_custom_instruction_slave.dataa
+		.lcd_data   (lcd_data_lcd_data),                  //                     conduit_end.lcd_data
+		.datab      (),                                   // nios_custom_instruction_slave_1.datab
+		.done       (),                                   // nios_custom_instruction_slave_2.done
+		.result     (),                                   // nios_custom_instruction_slave_3.result
+		.lcd_rw     (lcd_rw_lcd_rw),                      //                   conduit_end_1.lcd_rw
+		.lcd_rs     (lcd_rs_lcd_rs),                      //                   conduit_end_2.lcd_rs
+		.clk_en     (),                                   // nios_custom_instruction_slave_5.clk_en
+		.start      (),                                   // nios_custom_instruction_slave_6.start
+		.lcd_enable (lcd_enable_lcd_enable),              //                   conduit_end_3.lcd_enable
+		.reset      (rst_controller_001_reset_out_reset), //                           reset.reset
+		.clk        (clk_clk)                             //                           clock.clk
 	);
 
 	JooJump_processor_jtag_uart_0 jtag_uart_0 (

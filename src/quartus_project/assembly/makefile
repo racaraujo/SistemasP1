@@ -23,12 +23,12 @@ ARCHLDFLAGS	:= --defsym nasys_stack_top=0x1000 --defsym nasys_program_mem=0x0 --
 ARCHLDSCRIPT	:= --script="C:/intelFPGA_lite/18.0/University_Program/Monitor_Program/build/nios_as_build.ld"
 ASFLAGS		:= $(ARCHASFLAGS)
 CCFLAGS		:= -Wall -c $(USERCCFLAGS) $(ARCHCCFLAGS)
-LDFLAGS		:= $(ARCHLDFLAGS) $(ARCHLDSCRIPT) -e _start -u _start
+LDFLAGS		:= $(ARCHLDFLAGS) $(ARCHLDSCRIPT) -e main -u main
 OCFLAGS		:= -O srec
 
 # Files
 HDRS		:=
-SRCS		:= ../assembly/custom_lcd.s
+SRCS		:= custom_lcd.s
 OBJS		:= $(patsubst %, %.o, $(SRCS))
 
 # Targets

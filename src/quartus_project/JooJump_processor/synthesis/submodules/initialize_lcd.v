@@ -49,16 +49,17 @@ initial begin
 	done <= 1'b1;
 	temp_result <= 8'b01001001;
 end
+
 assign result = temp_result;
-/*always @(lcd_data[7] == 0) begin
+initial begin
 	if (executed == 2'b00) begin
 		lcd_data <= 8'b00001110;
 		executed <= 2'b01;
 	end
-	else if (executed == 2'b01) begin
+	else if(executed == 2'b01) begin
 		lcd_data <= 8'b00010000;
 		executed <= 2'b10;
 	end
 	else begin done <= 1'b1; end
-end*/
+end
 endmodule
