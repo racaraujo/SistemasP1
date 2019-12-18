@@ -4,9 +4,9 @@
 
 				.data
 				.equ COUNTER_INPUT, 0x2030 #address for counter
-                .equ PAUSE_BTN, 0x2020 #address for buttons
-                .equ JUMP_BTN, 0x2021 #address for buttons
-                .equ RESET_BTN, 0x2022 #address for buttons
+                .equ PAUSE_BTN, 0x2060 #0x2020 #address for buttons
+                .equ JUMP_BTN, 0x2040 #0x2021 #address for buttons
+                .equ RESET_BTN, 0x2050 #0x2022 #address for buttons
 
 				.global main
 				.text
