@@ -1,5 +1,6 @@
 
 module JooJump_processor (
+	pause_button_export,
 	clk_clk,
 	counter_8bit_export,
 	lcd_data_lcd_data,
@@ -7,8 +8,10 @@ module JooJump_processor (
 	lcd_rs_lcd_rs,
 	lcd_rw_lcd_rw,
 	reset_reset_n,
-	buttons_export);	
+	reset_button_export,
+	jump_button_export);	
 
+	input		pause_button_export;
 	input		clk_clk;
 	input	[7:0]	counter_8bit_export;
 	output	[7:0]	lcd_data_lcd_data;
@@ -16,5 +19,6 @@ module JooJump_processor (
 	output		lcd_rs_lcd_rs;
 	output		lcd_rw_lcd_rw;
 	input		reset_reset_n;
-	input	[2:0]	buttons_export;
+	input		reset_button_export;
+	input		jump_button_export;
 endmodule
