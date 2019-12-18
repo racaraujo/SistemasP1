@@ -40,26 +40,18 @@ block_generator:
                 addi r11, r0, 3
                 call mod_operation
                 # Finge que ta desenhando os blocos
+                call block_draw
                 br main # Impede de alcançar os métodos abaixo
+
+block_draw:
+                
+
 mod_operation:
                 div r9, r10, r11
                 mul r9, r9, r11
                 sub r9, r10, r9
                 addi r9, r9, 2
-                ret
-
-draw:
-                addi r12, r0, 80
-                addi r8, r0, 15
-                addi r15, r0, r0
-                sub r13, r7, r12
-                call for_draw
-
-for_draw:
-                addi r15, r15, 1
-
-if_draw:
-                
+                ret                
 
 # RANDOM
 random_call:	
