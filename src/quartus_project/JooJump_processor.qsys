@@ -49,6 +49,30 @@
          type = "String";
       }
    }
+   element JooJump_processor
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element JooJump_processor
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
+   element JooJump_processor
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -428,7 +452,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="initialize_lcd_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /><slave name="driver_lcd_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
@@ -825,21 +849,29 @@
    start="clk_0.clk"
    end="onchip_memory2_0.clk1" />
  <connection
-   kind="clock"
-   version="18.0"
-   start="clk_0.clk"
-   end="initialize_lcd_0.clock" />
- <connection
-   kind="clock"
-   version="18.0"
-   start="clk_0.clk"
-   end="driver_lcd_0.clock" />
- <connection
    kind="interrupt"
    version="18.0"
    start="nios2_gen2_0.irq"
    end="jtag_uart_0.irq">
   <parameter name="irqNumber" value="5" />
+ </connection>
+ <connection
+   kind="nios_custom_instruction"
+   version="18.0"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="initialize_lcd_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="initialize_lcd_0" />
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0" />
+ </connection>
+ <connection
+   kind="nios_custom_instruction"
+   version="18.0"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="driver_lcd_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="driver_lcd_0" />
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="1" />
  </connection>
  <connection
    kind="reset"
@@ -865,11 +897,6 @@
    kind="reset"
    version="18.0"
    start="clk_0.clk_reset"
-   end="initialize_lcd_0.reset" />
- <connection
-   kind="reset"
-   version="18.0"
-   start="clk_0.clk_reset"
    end="pause_button.reset" />
  <connection
    kind="reset"
@@ -881,11 +908,6 @@
    version="18.0"
    start="clk_0.clk_reset"
    end="jump_button.reset" />
- <connection
-   kind="reset"
-   version="18.0"
-   start="clk_0.clk_reset"
-   end="driver_lcd_0.reset" />
  <connection
    kind="reset"
    version="18.0"
