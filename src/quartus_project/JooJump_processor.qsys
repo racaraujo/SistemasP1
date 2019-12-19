@@ -41,6 +41,14 @@
          type = "String";
       }
    }
+   element JooJump_processor
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -56,6 +64,11 @@
          value = "3";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element counter_8bit.s1
    {
@@ -68,6 +81,14 @@
       {
          value = "8240";
          type = "String";
+      }
+   }
+   element driver_lcd_0
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
       }
    }
    element initialize_lcd_0
@@ -85,6 +106,11 @@
          value = "4";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element jtag_uart_0.avalon_jtag_slave
    {
@@ -100,6 +126,11 @@
       {
          value = "9";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element jump_button.s1
@@ -138,6 +169,11 @@
          value = "2";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element onchip_memory2_0.s1
    {
@@ -158,6 +194,11 @@
       {
          value = "7";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element pause_button.s1
@@ -180,6 +221,11 @@
          value = "8";
          type = "int";
       }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
+      }
    }
    element reset_button.s1
    {
@@ -200,6 +246,11 @@
       {
          value = "5";
          type = "int";
+      }
+      datum sopceditor_expanded
+      {
+         value = "0";
+         type = "boolean";
       }
    }
    element sysid_qsys_0.control_slave
@@ -248,8 +299,18 @@
    type="conduit"
    dir="end" />
  <interface
+   name="lcd_data_1"
+   internal="driver_lcd_0.conduit_end_3"
+   type="conduit"
+   dir="end" />
+ <interface
    name="lcd_enable"
    internal="initialize_lcd_0.conduit_end_3"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="lcd_enable_1"
+   internal="driver_lcd_0.conduit_end_2"
    type="conduit"
    dir="end" />
  <interface
@@ -258,8 +319,18 @@
    type="conduit"
    dir="end" />
  <interface
+   name="lcd_rs_1"
+   internal="driver_lcd_0.conduit_end"
+   type="conduit"
+   dir="end" />
+ <interface
    name="lcd_rw"
    internal="initialize_lcd_0.conduit_end_1"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="lcd_rw_1"
+   internal="driver_lcd_0.conduit_end_1"
    type="conduit"
    dir="end" />
  <interface
@@ -297,6 +368,7 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="8" />
  </module>
+ <module name="driver_lcd_0" kind="driver_lcd" version="1.0" enabled="1" />
  <module
    name="initialize_lcd_0"
    kind="initialize_lcd"
@@ -758,6 +830,11 @@
    start="clk_0.clk"
    end="initialize_lcd_0.clock" />
  <connection
+   kind="clock"
+   version="18.0"
+   start="clk_0.clk"
+   end="driver_lcd_0.clock" />
+ <connection
    kind="interrupt"
    version="18.0"
    start="nios2_gen2_0.irq"
@@ -804,6 +881,11 @@
    version="18.0"
    start="clk_0.clk_reset"
    end="jump_button.reset" />
+ <connection
+   kind="reset"
+   version="18.0"
+   start="clk_0.clk_reset"
+   end="driver_lcd_0.reset" />
  <connection
    kind="reset"
    version="18.0"

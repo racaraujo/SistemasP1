@@ -4,16 +4,20 @@
 
 `timescale 1 ps / 1 ps
 module JooJump_processor (
-		input  wire       clk_clk,               //          clk.clk
-		input  wire [7:0] counter_8bit_export,   // counter_8bit.export
-		input  wire       jump_button_export,    //  jump_button.export
-		output wire [7:0] lcd_data_lcd_data,     //     lcd_data.lcd_data
-		output wire       lcd_enable_lcd_enable, //   lcd_enable.lcd_enable
-		output wire       lcd_rs_lcd_rs,         //       lcd_rs.lcd_rs
-		output wire       lcd_rw_lcd_rw,         //       lcd_rw.lcd_rw
-		input  wire       pause_button_export,   // pause_button.export
-		input  wire       reset_reset_n,         //        reset.reset_n
-		input  wire       reset_button_export    // reset_button.export
+		input  wire       clk_clk,                 //          clk.clk
+		input  wire [7:0] counter_8bit_export,     // counter_8bit.export
+		input  wire       jump_button_export,      //  jump_button.export
+		output wire [7:0] lcd_data_lcd_data,       //     lcd_data.lcd_data
+		output wire [7:0] lcd_data_1_lcd_data,     //   lcd_data_1.lcd_data
+		output wire       lcd_enable_lcd_enable,   //   lcd_enable.lcd_enable
+		output wire       lcd_enable_1_lcd_enable, // lcd_enable_1.lcd_enable
+		output wire       lcd_rs_lcd_rs,           //       lcd_rs.lcd_rs
+		output wire       lcd_rs_1_lcd_rs,         //     lcd_rs_1.lcd_rs
+		output wire       lcd_rw_lcd_rw,           //       lcd_rw.lcd_rw
+		output wire       lcd_rw_1_lcd_rw,         //     lcd_rw_1.lcd_rw
+		input  wire       pause_button_export,     // pause_button.export
+		input  wire       reset_reset_n,           //        reset.reset_n
+		input  wire       reset_button_export      // reset_button.export
 	);
 
 	wire  [31:0] nios2_gen2_0_data_master_readdata;                           // mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
@@ -65,7 +69,7 @@ module JooJump_processor (
 	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [counter_8bit:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, jump_button:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, pause_button:reset_n, reset_button:reset_n, rst_translator:in_reset, sysid_qsys_0:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
-	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [initialize_lcd_0:reset, mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset]
+	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [driver_lcd_0:reset, initialize_lcd_0:reset, mm_interconnect_0:onchip_memory2_0_reset1_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_translator_001:in_reset]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [onchip_memory2_0:reset_req, rst_translator_001:reset_req_in]
 
 	JooJump_processor_counter_8bit counter_8bit (
@@ -74,6 +78,21 @@ module JooJump_processor (
 		.address  (mm_interconnect_0_counter_8bit_s1_address),  //                  s1.address
 		.readdata (mm_interconnect_0_counter_8bit_s1_readdata), //                    .readdata
 		.in_port  (counter_8bit_export)                         // external_connection.export
+	);
+
+	lcd_driver driver_lcd_0 (
+		.clk    (clk_clk),                            //                           clock.clk
+		.reset  (rst_controller_001_reset_out_reset), //                           reset.reset
+		.dataa  (),                                   //   nios_custom_instruction_slave.dataa
+		.datab  (),                                   // nios_custom_instruction_slave_1.datab
+		.result (),                                   // nios_custom_instruction_slave_2.result
+		.start  (),                                   // nios_custom_instruction_slave_3.start
+		.done   (),                                   // nios_custom_instruction_slave_4.done
+		.clk_en (),                                   // nios_custom_instruction_slave_5.clk_en
+		.rs     (lcd_rs_1_lcd_rs),                    //                     conduit_end.lcd_rs
+		.rw     (lcd_rw_1_lcd_rw),                    //                   conduit_end_1.lcd_rw
+		.en     (lcd_enable_1_lcd_enable),            //                   conduit_end_2.lcd_enable
+		.db     (lcd_data_1_lcd_data)                 //                   conduit_end_3.lcd_data
 	);
 
 	LCD_Initializer initialize_lcd_0 (

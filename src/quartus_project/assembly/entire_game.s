@@ -8,6 +8,11 @@
                 .equ JUMP_BTN, 0x2040 #0x2021 #address for buttons
                 .equ RESET_BTN, 0x2050 #0x2022 #address for buttons
 
+                # Definindo o nome das letras
+                .equ HEXA_S, 0x53
+                .equ HEXA_T, 0x54
+                .equ HEXA_A, 0x41
+                .equ HEXA_R, 0x52
 				.global main
 				.text
 
@@ -28,13 +33,42 @@
 # r0                   | Valor 0
 ###############################################
 
-main:			addi r7, r0, r0
+# envia uma instrução para o LCD
+.macro instr db
+	custom 1, r0, r0, \db
+.endm
+# envia um dado para o LCD
+.macro data db
+	movi r1, 1
+	custom 1, r0, r1, \db
+.endm
 
+main:			addi r7, r0, 0
+# Rotina de inicialização do display LCD
+                #custom 0, r9, r10, r10
+                movi r2, 0x38
+                instr r2
+                movi r2, 0x0c
+                instr r2
+                movi r2, 0x6
+                instr r2
+                movi r2, 0x1
+                instr r2
 # Looping menu
 menu:
+                movi r2, HEXA_S
+                data r2
+                movi r2, HEXA_T
+                data r2
+                movi r2, HEXA_A
+                data r2
+                movi r2, HEXA_R
+                data r2
+                movi r2, HEXA_T
+                data r2
                 movia r10, JUMP_BTN
                 ldbio r9, 0(r10)            # carrega o valor contido no botão de Saltar
-                bne r9, r0, menu 
+                bne r9, r0, menu
 
 game_loop:
                 add r16 ,r7, r12            #x+td
@@ -82,7 +116,7 @@ if_right2left:
                 cmpeq r17, r8, r0   # reachedge = 0; true
                 and r15, r15, r16   # r15 
                 and r15, r15, r17   #
-                beq r15, r0         # se for 0, vai para o próximo if
+                beq r15, r0, if_left2right # se for 0, vai para o próximo if
                 add r18, r0, r13    # salva a posição de desenho do bloco em r18
                 br after_if_1       # Volta para o for de onde veio
 
@@ -94,9 +128,10 @@ if_left2right:
                 cmpne r17, r8, r0   # reachedge != 0; true
                 and r15, r15, r16   # Verifica se r15 e r16 são iguais e guarda em r15
                 and r15, r15, r17   # Verifica se r15 e r17 são iguais e guarda em r15
-                beq r15, r0         # se for 0, vai para o próximo if
+                beq r15, r0, after_if_1 # se for 0, vai para o próximo if
                 sub r20, r12, r10   #
-                mul r20, r20, -1    #   
+                addi r21, r0, -1
+                mul r20, r20, r21   #   
                 add r19, r9, r20    # salva 
                 addi r18, r19, 1    # salva a posição de desenho do bloco em r18
                 br after_if_1       # Volta para o for de onde veio
@@ -112,7 +147,7 @@ mod_operation:
 random_call:	
 				movia r10, COUNTER_INPUT	# move o endereço da entrada do contador
 				ldbio r9, 0(r10)			# carrega o valor contido na entrada do contador
-                addi r10, r0, r0			# Limpa o registrador com zero
+                addi r10, r0, 0 			# Limpa o registrador com zero
 
 xorshift:		addi r10, r9, 0
 				slli r10, r10, 13			# shift left logical

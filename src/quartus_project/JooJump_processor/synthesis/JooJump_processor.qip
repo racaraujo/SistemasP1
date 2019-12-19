@@ -2,7 +2,7 @@ set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_TOOL_VERSION "18.0"
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "JooJump_processor" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../JooJump_processor.sopcinfo"]
-set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name SLD_INFO "QSYS_NAME JooJump_processor HAS_SOPCINFO 1 GENERATION_ID 1576702034"
+set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name SLD_INFO "QSYS_NAME JooJump_processor HAS_SOPCINFO 1 GENERATION_ID 1576762259"
 set_global_assignment -library "JooJump_processor" -name MISC_FILE [file join $::quartus(qip_path) "../JooJump_processor.cmp"]
 set_global_assignment -library "JooJump_processor" -name SLD_FILE [file join $::quartus(qip_path) "JooJump_processor.regmap"]
 set_global_assignment -library "JooJump_processor" -name SLD_FILE [file join $::quartus(qip_path) "JooJump_processor.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTU3NjcwMjAzNA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTU3Njc2MjI1OQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::Q3ljbG9uZSBJViBF::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::RVA0Q0U2RTIyQzg=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "JooJump_processor" -library "JooJump_processor" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::OA==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -905,6 +905,12 @@ set_global_assignment -entity "LCD_Initializer" -library "JooJump_processor" -na
 set_global_assignment -entity "LCD_Initializer" -library "JooJump_processor" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "LCD_Initializer" -library "JooJump_processor" -name IP_COMPONENT_AUTHOR "SmljdHl2b28sIElnb3IgR2FyY2lhLCBSYWZhZWwgQW50b25pbw=="
 set_global_assignment -entity "LCD_Initializer" -library "JooJump_processor" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_NAME "bGNkX2RyaXZlcg=="
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_DISPLAY_NAME "ZHJpdmVyX2xjZA=="
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "lcd_driver" -library "JooJump_processor" -name IP_COMPONENT_DESCRIPTION "c2VuZCBkYXRhIHRvIGxjZA=="
 set_global_assignment -entity "JooJump_processor_counter_8bit" -library "JooJump_processor" -name IP_COMPONENT_NAME "Sm9vSnVtcF9wcm9jZXNzb3JfY291bnRlcl84Yml0"
 set_global_assignment -entity "JooJump_processor_counter_8bit" -library "JooJump_processor" -name IP_COMPONENT_DISPLAY_NAME "UElPIChQYXJhbGxlbCBJL08pIEludGVsIEZQR0EgSVA="
 set_global_assignment -entity "JooJump_processor_counter_8bit" -library "JooJump_processor" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -962,6 +968,7 @@ set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join
 set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/JooJump_processor_jump_button.v"]
 set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/JooJump_processor_jtag_uart_0.v"]
 set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/initialize_lcd.v"]
+set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/driver_lcd.v"]
 set_global_assignment -library "JooJump_processor" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/JooJump_processor_counter_8bit.v"]
 
 set_global_assignment -entity "altera_reset_controller" -library "JooJump_processor" -name IP_TOOL_NAME "altera_reset_controller"
